@@ -1,0 +1,45 @@
+{
+	"name": "actor-SensorActionTrigger",
+	"version": "0.5.0",
+	"description": "Triggers an action periobased on a sensor reading",
+	"keywords": "Fabrica-IO, actor, trigger",
+	"repository":
+	{
+	  "type": "git",
+	  "url": "https://github.com/FabricaIO/actor-SensorActionTrigger.git"
+	},
+	"authors":
+	[
+	  {
+		"name": "Sam Groveman",
+		"email": "SamGroveman@outlook.com",
+		"url": "https://github.com/FabricaIO"
+	  }
+	],
+	"dependencies": {
+		"Periodic Action Trigger": "https://github.com/FabricaIO/actor-PeriodicActionTrigger.git"
+	  },
+	"license": "GPLv3",
+	"homepage": "https://github.com/FabricaIO",
+	"frameworks": "arduino",
+	"platforms": "*",
+	"fabrica-io" : {
+		"name": "Sensorrigger",
+		"type": 1,
+		"category": "Trigger",
+		"libname": "SensorActionTrigger",
+		"includes": ["SensorActionTrigger"],
+		"description": "Triggers an action on sensor reading",
+		"constructor":
+		[
+			[
+				{
+					"name": "Configfile",
+					"type": "String",
+					"description": "The file name to store settings in",
+					"default": "SensorActionTrigger.json"
+				}
+			]
+		]
+	}
+  }
