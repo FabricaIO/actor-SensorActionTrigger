@@ -77,13 +77,6 @@ bool SensorActionTrigger::setConfig(String config, bool save) {
 	return false;
 }
 
-/// @brief Runs the task to trigger the action
-void SensorActionTrigger::runTask(ulong elapsed) {
-	if (taskPeriodTriggered(elapsed)) {
-		triggerAction(trigger_config.payload);
-	}
-}
-
 /// @brief Triggers the set action
 /// @param payload A payload to pass to the action
 /// @return True on success
@@ -109,7 +102,6 @@ bool SensorActionTrigger::triggerAction(String payload) {
 	}
 	return false;
 }
-
 
 /// @brief Collects all the base class parameters and additional parameters
 /// @return a JSON document with all the parameters

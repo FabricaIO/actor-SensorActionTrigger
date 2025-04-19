@@ -30,8 +30,7 @@ class SensorActionTrigger : public PeriodicActionTrigger {
 		ParameterTrigger sensor_value;
 
 		bool configureOutput();
-		bool triggerAction(String payload);
-		void runTask(ulong elapsed);
+		bool triggerAction(String payload) override;
 		JsonDocument addAdditionalConfig();
 
 	public:
