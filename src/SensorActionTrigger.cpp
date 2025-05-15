@@ -21,7 +21,7 @@ bool SensorActionTrigger::begin() {
 		// Set description
 		if (!configExists) {
 			// Set defaults
-			trigger_config.payload = "%SESNOR_VALUE%";
+			trigger_config.payload = "%SENSOR_VALUE%";
 			return setConfig(getConfig(), true);
 		} else {
 			// Load settings
@@ -95,7 +95,7 @@ bool SensorActionTrigger::triggerAction(String payload) {
 		}
 		if (valueTriggered) {
 			// Parse payload template
-			payload.replace("%SESNOR_VALUE%", String(value));
+			payload.replace("%SENSOR_VALUE%", String(value));
 			return trigger.triggerActions({{action[0], {{action[1], payload}}}});
 		}
 		return true;
