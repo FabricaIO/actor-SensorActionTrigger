@@ -20,13 +20,13 @@ class SensorActionTrigger : public PeriodicActionTrigger {
 			double threshold = 2.5;
 
 			/// @brief If the pump should activate on a low reading
-			String activeState= "Higher";			
+			String activeState = "Higher";			
 		} sensor_trigger_config;
 
 		/// @brief Path to configuration file
 		String config_path;
 
-		/// @brief PRovides access to sensor value
+		/// @brief Provides access to sensor value
 		ParameterTrigger sensor_value;
 
 		bool configureOutput();
