@@ -1,7 +1,7 @@
 {
 	"name": "actor-SensorActionTrigger",
 	"version": "0.5.0",
-	"description": "Triggers an action periobased on a sensor reading",
+	"description": "Triggers an action based on a sensor reading",
 	"keywords": "Fabrica-IO, actor, trigger",
 	"repository":
 	{

@@ -15,12 +15,12 @@
 /// @brief Class providing action triggers based on sensor readings
 class SensorActionTrigger : public PeriodicActionTrigger {
 	protected:
-		/// @brief Output configuration
+		/// @brief Trigger configuration
 		struct {
 			/// @brief Threshold the test sensor value against
 			double threshold = 2.5;
 
-			/// @brief If the pump should activate on a low reading
+			/// @brief What state should trigger the action
 			String activeState = "Higher";			
 		} sensor_trigger_config;
 
