@@ -21,4 +21,4 @@ Once a device hub is set up, these are the configuration parameters that can be 
 * `sensorParameter`: A list of sensors and their parameters that can be measured, one can be selected
 * `activeState`: What to consider an active state, e.g. `Higher` will trigger the action if the sensor reading is higher than the threshold (see below)
 * `threshold`: The threshold value to measure the sensor against
-* `Payload`: A string payload that is past to the action triggered. Refer to each actor's documentation to see what payloads are expected. The template `%SENSOR_VALUE%` can be used to substitute in the sensor value measured when the action was triggered.
+* `Payload`: A string payload that is passed to the action triggered. Refer to each actor's documentation to see what payloads are expected. The template `%SENSOR_VALUE%` can be used to substitute in the sensor value measured when the action was triggered.
