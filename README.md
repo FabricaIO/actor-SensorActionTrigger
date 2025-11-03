@@ -8,9 +8,10 @@ The constructor takes two parameters:
 
 ## Actions
 This device has the following actions available to it:
-| Action ID | Action name   | Action Payload             | Return Value              | Description                                        |
-| --------- | ------------- | -------------------------- | ------------------------- | -------------------------------------------------- |
-| 0         | triggeraction | Any string (see below)     | JSON `success` as boolean | Triggers the set action, passing the payload to it |
+| Action ID | Action name   | Action Payload             | Return Value              | Description                                          |
+| --------- | ------------- | -------------------------- | ------------------------- | ---------------------------------------------------- |
+| 0         | triggeraction | Any string (see below)     | JSON `success` as boolean | Triggers the set action based on the sensor reading  |
+| 1         | forceTrigger  | Any string (see below)     | JSON `success` as boolean | Triggers the action regardless of the sensor reading |
 
 ## Configuration
 Once a device hub is set up, these are the configuration parameters that can be set in the web interface:

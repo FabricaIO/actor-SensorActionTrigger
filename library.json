@@ -17,8 +17,8 @@
 	  }
 	],
 	"dependencies": {
-		"Periodic Action Trigger": "https://github.com/FabricaIO/actor-PeriodicActionTrigger.git",
-		"Parameter Trigger": "https://github.com/FabricaIO/util-ParameterTrigger.git"
+		"PeriodicActionTrigger": "https://github.com/FabricaIO/actor-PeriodicActionTrigger.git",
+		"ParameterTrigger": "https://github.com/FabricaIO/util-ParameterTrigger.git"
 	  },
 	"license": "GPLv3",
 	"homepage": "https://github.com/FabricaIO",

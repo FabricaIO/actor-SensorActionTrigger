@@ -16,8 +16,9 @@ bool SensorActionTrigger::begin() {
 	sensor_value.parameter_config.Parameters.resize(1);
 	// Check if file exists
 	bool configExists = checkConfig(config_path);
-	// Create settings directory if necessary
 	if (PeriodicActionTrigger::begin()) {
+		forceTrigger = Description.actions.size();
+		Description.actions["forceTrigger"] = forceTrigger;
 		// Set description
 		if (!configExists) {
 			// Set defaults
@@ -29,6 +30,19 @@ bool SensorActionTrigger::begin() {
 		}
 	}
 	return false;
+}
+
+/// @brief Receives an action
+/// @param action The action to process
+/// @param payload Payload to be passed to triggered action
+/// @return JSON response with OK
+std::tuple<bool, String> SensorActionTrigger::receiveAction(int action, String payload) {
+	if (action == forceTrigger) {
+		PeriodicActionTrigger::triggerAction(payload);
+		return { true, R"({"success": true})" }; 
+	} else {
+		return PeriodicActionTrigger::receiveAction(action, payload);
+	}
 }
 
 /// @brief Gets the current config

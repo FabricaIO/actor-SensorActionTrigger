@@ -30,12 +30,16 @@ class SensorActionTrigger : public PeriodicActionTrigger {
 		/// @brief Provides access to sensor value
 		ParameterTrigger sensor_value;
 
+		/// @brief Index for action that Checks if the sensor should trigger the action
+		int forceTrigger;
+
 		bool configureOutput();
 		bool triggerAction(String payload) override;
 		JsonDocument addAdditionalConfig();
 
 	public:
 		SensorActionTrigger(String Name, String configFile = "SensorActionTrigger.json");
+		std::tuple<bool, String> receiveAction(int action, String payload);
 		bool begin();
 		String getConfig();
 		bool setConfig(String config, bool save);
