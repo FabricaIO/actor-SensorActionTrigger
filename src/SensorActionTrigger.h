@@ -10,7 +10,7 @@
 #include <Arduino.h>
 #include <ArduinoJson.h>
 #include <PeriodicActionTrigger.h>
-#include <ParameterTrigger.h>
+#include <ParameterGetter.h>
 
 /// @brief Class providing action triggers based on sensor readings
 class SensorActionTrigger : public PeriodicActionTrigger {
@@ -28,7 +28,7 @@ class SensorActionTrigger : public PeriodicActionTrigger {
 		String config_path;
 
 		/// @brief Provides access to sensor value
-		ParameterTrigger sensor_value;
+		ParameterGetter sensor_value;
 
 		/// @brief Index for action that Checks if the sensor should trigger the action
 		int forceTrigger;
