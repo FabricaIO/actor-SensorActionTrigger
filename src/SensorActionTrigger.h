@@ -30,7 +30,7 @@ class SensorActionTrigger : public PeriodicActionTrigger {
 		/// @brief Provides access to sensor value
 		ParameterGetter sensor_value;
 
-		/// @brief Index for action that Checks if the sensor should trigger the action
+		/// @brief Index for action that checks if the sensor should trigger the action
 		int forceTrigger;
 
 		bool configureOutput();
