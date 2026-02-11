@@ -18,10 +18,19 @@ class SensorActionTrigger : public PeriodicActionTrigger {
 		/// @brief Trigger configuration
 		struct {
 			/// @brief Threshold the test sensor value against
-			double threshold = 2.5;
+			double threshold1 = 2.5;
 
 			/// @brief What state should trigger the action
-			String activeState = "Higher";			
+			String activeState1 = "Higher";
+
+			/// True if using a range instead of just a threshold
+			bool activeInrange = false;
+
+			/// @brief Second threshold the test sensor value against
+			double threshold2 = 2.5;
+
+			/// @brief What state should trigger the action
+			String activeState2 = "Higher";
 		} sensor_trigger_config;
 
 		/// @brief Path to configuration file

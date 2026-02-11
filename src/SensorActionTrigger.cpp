@@ -72,8 +72,11 @@ bool SensorActionTrigger::setConfig(String config, bool save) {
 			return false;
 		}
 		// Assign loaded values
-		sensor_trigger_config.activeState = doc["activeState"]["current"].as<String>();
-		sensor_trigger_config.threshold = doc["threshold"].as<double>();
+		sensor_trigger_config.activeState1 = doc["activeState1"]["current"].as<String>();
+		sensor_trigger_config.threshold1 = doc["threshold1"].as<double>();
+		sensor_trigger_config.activeState2 = doc["activeState2"]["current"].as<String>();
+		sensor_trigger_config.threshold2 = doc["threshold2"].as<double>();
+		sensor_trigger_config.activeInrange = doc["activeInrange"].as<bool>();
 
 		// Parse sensor parameter
 		String sensor_combined = doc["sensorParameter"]["current"].as<String>();
@@ -99,14 +102,24 @@ bool SensorActionTrigger::triggerAction(String payload) {
 		double value = params[sensor_value.Parameters[0].first][sensor_value.Parameters[0].second];
 		bool valueTriggered = false;
 		// Check if sensor value is triggering
-		if (sensor_trigger_config.activeState == "Higher") {
-			valueTriggered = value > sensor_trigger_config.threshold;
-		} else if (sensor_trigger_config.activeState == "Lower") {
-			valueTriggered = value < sensor_trigger_config.threshold;
-		} else if (sensor_trigger_config.activeState == "Equal") {
-			valueTriggered = value == sensor_trigger_config.threshold;
+		if (sensor_trigger_config.activeState1 == "Higher") {
+			valueTriggered = value > sensor_trigger_config.threshold1;
+		} else if (sensor_trigger_config.activeState1 == "Lower") {
+			valueTriggered = value < sensor_trigger_config.threshold1;
+		} else if (sensor_trigger_config.activeState1 == "Equal") {
+			valueTriggered = value == sensor_trigger_config.threshold1;
 		}
-		if (valueTriggered) {
+		bool secondValueTriggered = true;
+		if (sensor_trigger_config.activeInrange) {
+			if (sensor_trigger_config.activeState2 == "Higher") {
+				secondValueTriggered = value > sensor_trigger_config.threshold2;
+			} else if (sensor_trigger_config.activeState2 == "Lower") {
+				secondValueTriggered = value < sensor_trigger_config.threshold2;
+			} else if (sensor_trigger_config.activeState2 == "Equal") {
+				secondValueTriggered = value == sensor_trigger_config.threshold2;
+			}
+		}
+		if (valueTriggered && secondValueTriggered) {
 			// Parse payload template
 			payload.replace("%SENSOR_VALUE%", String(value));
 			return trigger.triggerActions({{action[0], {{action[1], payload}}}});
@@ -129,7 +142,6 @@ JsonDocument SensorActionTrigger::addAdditionalConfig() {
 		Logger.println(error.f_str());
 		return doc;
 	}
-	doc["threshold"] = sensor_trigger_config.threshold;
 	// Add all sensor options to dropdown
 	doc["sensorParameter"]["current"] = sensor_value.Parameters.size() > 0 ? sensor_value.Parameters[0].first + ":" + sensor_value.Parameters[0].second : "";
 	std::map<String, std::vector<String>> sensors = sensor_value.listAllParameters();
@@ -145,9 +157,16 @@ JsonDocument SensorActionTrigger::addAdditionalConfig() {
 	} else {
 		doc["sensorParameter"]["options"][0] = "";
 	}
-	doc["activeState"]["current"] =  sensor_trigger_config.activeState;
-	doc["activeState"]["options"][0] = "Higher";
-	doc["activeState"]["options"][1] = "Lower";
-	doc["activeState"]["options"][2] = "Equal";
+	doc["threshold1"] = sensor_trigger_config.threshold1;
+	doc["activeState1"]["current"] =  sensor_trigger_config.activeState1;
+	doc["activeState1"]["options"][0] = "Higher";
+	doc["activeState1"]["options"][1] = "Lower";
+	doc["activeState1"]["options"][2] = "Equal";
+	doc["activeInrange"] = sensor_trigger_config.activeInrange;
+	doc["threshold2"] = sensor_trigger_config.threshold2;
+	doc["activeState2"]["current"] =  sensor_trigger_config.activeState2;
+	doc["activeState2"]["options"][0] = "Higher";
+	doc["activeState2"]["options"][1] = "Lower";
+	doc["activeState2"]["options"][2] = "Equal";
 	return doc;
 }
