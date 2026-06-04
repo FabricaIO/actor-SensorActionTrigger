@@ -48,7 +48,7 @@ class SensorActionTrigger : public PeriodicActionTrigger {
 
 	public:
 		SensorActionTrigger(String Name, String configFile = "SensorActionTrigger.json");
-		std::tuple<bool, String> receiveAction(int action, String payload);
+		std::pair<bool, String> receiveAction(const int action, const String& payload = "");
 		bool begin();
 		String getConfig();
 		bool setConfig(String config, bool save);

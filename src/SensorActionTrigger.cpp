@@ -35,7 +35,7 @@ bool SensorActionTrigger::begin() {
 /// @param action The action to process
 /// @param payload Payload to be passed to triggered action
 /// @return JSON response with OK
-std::tuple<bool, String> SensorActionTrigger::receiveAction(int action, String payload) {
+std::pair<bool, String> SensorActionTrigger::receiveAction(const int action, const String& payload) {
 	if (action == forceTrigger) {
 		PeriodicActionTrigger::triggerAction(payload);
 		return { true, R"({"success": true})" }; 
